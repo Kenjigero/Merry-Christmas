@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff6f61, #ffcccb);
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: radial-gradient(circle, #c0392b, #6e2c00);
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000000;
+            border-bottom: 5px solid #fff;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 1.8em;
+            margin-top: 30px;
+            color: #fff;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .ornaments {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .ornament {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffcc00, #ff9900);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: bounce 2s infinite;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .ornament:hover {
+            transform: scale(1.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .ornament:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #c0392b;
+            border-radius: 50%;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            padding-bottom: 50px;
+        }
+
+        .video {
+            width: 70%;
+            max-width: 500px;
+            border: 5px solid #c0392b;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        /* Falling snowflake styles */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1.5em;
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Merry Christmas, My Baby! 🎄❤️</div>
+    <div class="message">Wishing you all the joy and warmth this holiday season. You make every day magical!</div>
+
+    <!-- Ornaments -->
+    <div class="ornaments">
+        <div class="ornament"></div>
+        <div class="ornament"></div>
+        <div class="ornament"></div>
+        <div class="ornament"></div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-container">
+        <video class="video" id="christmasVideo" controls>
+            <source src="hehe.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="footer">With love and hugs, Ken</div>
+
+    <script>
+        const video = document.getElementById('christmasVideo');
+
+        // Add event listener to display notification when the video ends
+        video.addEventListener('ended', () => {
+            if (confirm('Sagutin mo na ako!')) {
+                // Redirect to a new HTML page when the user presses OK
+                window.location.href = 'newpage.html'; // Replace 'newpage.html' with the actual file name
+            }
+        });
+
+        // Function to create a falling snowflake
+        const createSnowflake = () => {
+            const snowflake = document.createElement('div');
+            snowflake.innerHTML = '❄';
+            snowflake.classList.add('snowflake');
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.body.appendChild(snowflake);
+
+            // Remove snowflake after animation ends
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        };
+
+        // Create snowflakes at intervals
+        setInterval(createSnowflake, 200);
+    </script>
+</body>
+</html>
